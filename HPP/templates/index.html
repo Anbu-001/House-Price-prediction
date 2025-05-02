@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bangalore Home Price Prediction</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f4f6f8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background: white;
+            padding: 40px 50px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #444;
+        }
+
+        input[type="number"], select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Enter Home Details</h2>
+        <form action="{{ url_for('predict') }}" method="POST">
+            <label for="sLocation">Location:</label>
+            <select name="sLocation" id="sLocation">
+                {% for location in locations %}
+                    <option value="{{ location }}">{{ location.title() }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="Squareft">Square Footage:</label>
+            <input type="number" name="Squareft" required>
+
+            <label for="uiBHK">BHK:</label>
+            <input type="number" name="uiBHK" required>
+
+            <label for="uiBathrooms">Bathrooms:</label>
+            <input type="number" name="uiBathrooms" required>
+
+            <input type="submit" value="Predict Price">
+        </form>
+    </div>
+</body>
+</html>
